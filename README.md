@@ -2,6 +2,8 @@
 ====
 ![kilo](http://www.navy.mil/navydata/communications/flags/kilo.gif)
 
+[kilo. I wish to communicate with you.](http://www.navy.mil/navydata/nav_legacy.asp?id=273)
+
 
 A Clojure library designed to provide a RESTful interface to the VLACS data stored in a Moodle database.
 
