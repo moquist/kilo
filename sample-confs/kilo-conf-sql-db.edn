@@ -1,0 +1,5 @@
+{:classname "com.postgres.jdbc.Driver"
+ :subprotocol "postgresql"
+ :subname "//hostname/moodeltestdb_name"
+ :user "test"
+ :password "secret"}
