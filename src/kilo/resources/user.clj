@@ -17,13 +17,25 @@
     :example "<code>curl --header 'Accept:application/edn' http://localhost:4001/kilo/user/36590</code>"} 
 
   get-user [id]
-   
+  :allowed-methods [:get] 
   :available-media-types ["application/json" "application/edn"]
   :exists? (fn [ctx]
              (if-let [user (get-user-data id)]
                {::user user}))
   :handle-ok (fn [ctx]
-                 (::user ctx)))
+               (::user ctx)))
+
+(defresource
+  set-user [id]
+  :allowed-methods [:put]
+  :available-media-types ["application/json" "application/edn"]
+  :put! (fn [ctx]
+          (prn "hi")
+          )
+  :respond-with-entity? true
+  :handle-ok (fn [ctx]
+               (prn "in handle-ok"))
+  )
 
 
 

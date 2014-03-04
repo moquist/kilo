@@ -11,7 +11,9 @@
 
 (defroutes app
   ;;curl -H "Accept:application/json" http://localhost:3000/users/36590
-  (GET "/kilo/user/:id" [id] (k-user/get-user id)))
+  (GET "/kilo/user/:id" [id] (k-user/get-user id))
+  (PUT "/kilo/user/:id" [id] (k-user/set-user id))
+  )
 
 (def handler
   (-> app
