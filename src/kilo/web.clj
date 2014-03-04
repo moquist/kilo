@@ -6,17 +6,17 @@
    [ring.adapter.jetty :as jetty]
    [ring.middleware.format :as ring-format]
    [compojure.core :refer [defroutes PUT GET]]
+   [compojure.handler :as handler]
    [clojure.java.jdbc :as sql]))
 
 (defroutes app
-  ;;curl -H "Accept:application/json" http://localhost:3000/users
-
+  ;;curl -H "Accept:application/json" http://localhost:3000/users/36590
   (GET "/kilo/user/:id" [id] (k-user/get-user id)))
 
 (def handler
   (-> app
       ;;(wrap-trace :header :ui)
-      (wrap-params)
+      (handler/api)
       (ring-format/wrap-restful-format)))
 
 (defn run!
