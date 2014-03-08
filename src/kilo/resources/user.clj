@@ -1,5 +1,7 @@
 (ns kilo.resources.user
-  (:require [liberator.core :refer [resource defresource]]
+  (:require
+            [clojure.data.json :as json]
+            [liberator.core :refer [resource defresource]]
             [kilo.sqldb :as k-sqldb]
             [clojure.pprint :refer (pprint)]))
 
@@ -8,7 +10,12 @@
   (k-sqldb/select-one!
    {:select [:*]
         :from [:mdl_sis_user]
-        :where [:= :id (bigint id)]}  ))
+    :where [:= :id (bigint id)]}  ))
+
+(defn set-user-data
+  [id fields]
+  (prn id)
+  (prn fields))
 
 (defresource
   ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of
@@ -30,8 +37,7 @@
   :allowed-methods [:put]
   :available-media-types ["application/json" "application/edn"]
   :put! (fn [ctx]
-          (prn "hi")
-          )
+          (set-user-data id (json/read-str  (slurp (get-in ctx [:request :body])) :key-fn keyword) ) )
   :respond-with-entity? true
   :handle-ok (fn [ctx]
                (prn "in handle-ok"))

@@ -25,7 +25,8 @@
                  ;; test db creation / population.
                  [jdbc-pg-init "0.1.2"]
                  [honeysql "0.4.2"]
-                 [korma "0.3.0-RC6" :exclusions [org.clojure/java.jdbc]]]
+                 [korma "0.3.0-RC6" :exclusions [org.clojure/java.jdbc]]
+                 [org.clojure/data.json "0.2.4"]]
   
   :plugins [[lein-ring "0.8.8" :exclusions [org.clojure/clojure]]]
 
