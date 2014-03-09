@@ -7,16 +7,46 @@ this file just has some examples of how to use HoneySQL.
 
 We're using Korma's connection management and query fns."}
   kilo.sqldb
+  (:use [korma.core])
   (:require [clojure.edn :as edn]
             [honeysql.core :as hsql]
             [honeysql.helpers :as hsql-h]
             [korma.db :as kdb]
-            [clojure.string :refer [split]]))
+            
+            [clojure.string :as str]
+            
+            [clojure.string :refer [split]])
+ 
+           )
 
 (defn default-connection! [db]
   (let [pool (kdb/delay-pool db)]
     (kdb/default-connection pool)
     pool))
+
+;; kilo-specific changes to utilize Korma directly
+;; Need to confab with Matt about this approach and pull out
+;; into its own file
+(defentity user
+  (table :mdl_sis_user)
+  )
+
+(defn get-user-data
+  [id]
+  ;; need to convert string id to long (better way?)
+  (let [id (Long/parseLong id)]
+    (select user
+          (where {:id id})))
+   )
+
+(defn set-user-data
+  [id fields]
+  (let [id (Long/parseLong id)]
+    (update user
+            (set-fields fields)
+            (where {:id id})))
+  )
+;; end kilo-specific changes
 
 (def query-results-types
   {"SELECT" :results

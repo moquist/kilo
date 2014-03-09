@@ -5,18 +5,6 @@
             [kilo.sqldb :as k-sqldb]
             [clojure.pprint :refer (pprint)]))
 
-(defn get-user-data
-  [id]
-  (k-sqldb/select-one!
-   {:select [:*]
-        :from [:mdl_sis_user]
-    :where [:= :id (bigint id)]}  ))
-
-(defn set-user-data
-  [id fields]
-  (prn id)
-  (prn fields))
-
 (defresource
   ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of
           getting data in function that handles the exists? check and assoc'ing that data
@@ -27,7 +15,7 @@
   :allowed-methods [:get] 
   :available-media-types ["application/json" "application/edn"]
   :exists? (fn [ctx]
-             (if-let [user (get-user-data id)]
+             (if-let [user (k-sqldb/get-user-data id)]
                {::user user}))
   :handle-ok (fn [ctx]
                (::user ctx)))
@@ -37,7 +25,7 @@
   :allowed-methods [:put]
   :available-media-types ["application/json" "application/edn"]
   :put! (fn [ctx]
-          (set-user-data id (json/read-str  (slurp (get-in ctx [:request :body])) :key-fn keyword) ) )
+          (k-sqldb/set-user-data id (json/read-str  (slurp (get-in ctx [:request :body])) :key-fn keyword) ) )
   :respond-with-entity? true
   :handle-ok (fn [ctx]
                (prn "in handle-ok"))
