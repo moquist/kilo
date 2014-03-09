@@ -24,30 +24,6 @@ We're using Korma's connection management and query fns."}
     (kdb/default-connection pool)
     pool))
 
-;; kilo-specific changes to utilize Korma directly
-;; Need to confab with Matt about this approach and pull out
-;; into its own file
-(defentity user
-  (table :mdl_sis_user)
-  )
-
-(defn get-user-data
-  [id]
-  ;; need to convert string id to long (better way?)
-  (let [id (Long/parseLong id)]
-    (select user
-          (where {:id id})))
-   )
-
-(defn set-user-data
-  [id fields]
-  (let [id (Long/parseLong id)]
-    (update user
-            (set-fields fields)
-            (where {:id id})))
-  )
-;; end kilo-specific changes
-
 (def query-results-types
   {"SELECT" :results
    "UPDATE" :keys
