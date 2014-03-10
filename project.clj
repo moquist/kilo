@@ -10,6 +10,7 @@
 		 [ring/ring-core "1.2.1"]
                  [ring/ring-jetty-adapter "1.1.0"]
                  [ring-middleware-format "0.3.2"]
+                 [ring-mock "0.1.5"]
                  
                  ;;[org.clojure/java.jdbc "0.3.3"]
                  ;; using org.clojure/java.jdbc 0.3.3 results in this

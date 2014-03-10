@@ -1,0 +1,23 @@
+;; Schema for Kilo test data. Kilo exposes data from Moodle, but for tests, samples, etc.
+;; we want to have some non-production data that we can manipulate and potentially share
+;; without concern for exposing production data to outside world.
+
+;; TODO: see https://github.com/miner/herbert for schematizing this
+{:tables
+ {:mdl_sis_user 
+       {:cols 
+                   [[:id :bigserial]
+                    [:sis_user_idstr :varchar "NOT NULL"]
+                    [:username :varchar "NOT NULL"]
+                    [:password :varchar "NOT NULL"]
+                    [:privilege :varchar "NOT NULL"]
+                    [:lastname :varchar "NOT NULL"]
+                    [:firstname :varchar "NOT NULL"]
+                    [:email :varchar "NOT NULL"]
+                    [:primary_sis_user_idstr :varchar "NOT NULL"]
+                    [:timemodified :bigint]
+                    [:timecreated :bigint]
+                    [:istest :int "NOT NULL"]
+                    [:can_masquerade :int "NOT NULL"]
+                    [:sis_user_id :bigint]]
+         :primary-key [:id]}}}
