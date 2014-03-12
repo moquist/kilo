@@ -2,7 +2,8 @@
   (:require [kilo.web :as k-web]
             [clojure.test :refer :all]
             [ring.mock.request :as rmr]
-            [kilo.db-config :as k-testdb]))
+            [kilo.db-config :as k-testdb]
+            [clojure.java.jdbc :refer [with-connection] ]))
 
 (defn set-up-test []
   ;; this is where we would also initialize and populate test db
@@ -11,6 +12,7 @@
   ;; tests defined in web_test.clj
 
   (k-testdb/setup-test-db!)
+  (k-testdb/set-korma-connection!)
   ;;(def onboarding-response (a-web/onboarding (rmr/request :get "/")))
   (def get-user (k-web/app (rmr/request :get "/kilo/user/99999"))))
   
@@ -22,6 +24,7 @@
   [api-tests]
   (set-up-test)
   (api-tests)
+  
   (try
     (teardown-test)
     (finally (println "Kilo API test complete"))))

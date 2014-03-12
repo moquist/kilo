@@ -3,6 +3,7 @@
             [clojure.test :refer :all]
             [clojure.java.jdbc :as sql]
             [kilo.sqldb-ddl :as k-sqldb-ddl]
+            [kilo.sqldb :as k-sqldb]
             [clojure.edn :as edn])
   (:use clojure.java.io ))
 
@@ -10,17 +11,17 @@
 
 (def test-schema (edn/read-string (slurp "schema.edn")))
 
-(defn db-url [home-dir]
-         (if-let [nums (.indexOf home-dir "")]
-           "bar"
-          "//localhost:5432/kilo-test" ))
-
 (def test-db
   (let [conf (k-conf/load-configs (apply str home-dir
-                                         "/" ".kilo" ))
+                                         "/" ".kilo-test" ))
         db (:conf-sql-db conf)]
     ;; TODO: really need to substring (?) and supply 'kilo-test' as db-name
-    (assoc db :subname "//localhost:5432/kilo-test")))
+    (assoc db :subname "//localhost:5432/kilo-test")
+    ))
+
+(defn set-korma-connection!
+  []
+  (k-sqldb/default-connection! test-db))
 
 (defn get-lines
   "Returns a seq referencing the lines read from the file name passed."

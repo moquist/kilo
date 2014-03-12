@@ -18,6 +18,6 @@
 
 ;; disabling get-user-test for now. Need to allow for db connection in
 ;; context of test.
-#_(deftest get-user-test
+(deftest get-user-test
   (is (= (:status get-user) 200)))
 
