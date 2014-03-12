@@ -2,8 +2,7 @@
   (:require [kilo.web :as k-web]
             [clojure.test :refer :all]
             [ring.mock.request :as rmr]
-            [kilo.db-config :as k-testdb]
-            [clojure.java.jdbc :refer [with-connection] ]))
+            [kilo.db-config :as k-testdb]))
 
 (defn set-up-test []
   ;; this is where we would also initialize and populate test db
