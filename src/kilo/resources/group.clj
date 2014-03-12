@@ -29,6 +29,7 @@
           ;;(k-usersql/set-user-data id (json/read-str  (slurp (get-in
           ;ctx [:request :body])) :key-fn keyword) )
           )
+  :new? false
   :respond-with-entity? true
   :handle-ok (fn [ctx]
                (prn "in handle-ok"))
