@@ -16,8 +16,7 @@
   (PUT "/kilo/user/:id" [id] (k-user/set-user id))
 
   (GET "/kilo/group/:id" [id] (k-group/get-group id))
-  (PU
-   T "/kilo/group/:id" [id] (k-group/set-group id))
+  (PUT "/kilo/group/:id" [id] (k-group/set-group id))
   )
 
 (def handler
