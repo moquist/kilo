@@ -1,5 +1,5 @@
 {:classname "com.postgres.jdbc.Driver"
  :subprotocol "postgresql"
- :subname "//hostname/moodeltestdb_name"
- :user "test"
- :password "secret"}
+ :subname "//localhost:5432/kilo-test"
+ :user "postgres"
+ :password ""}
