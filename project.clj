@@ -39,6 +39,8 @@
   
   :ring {:handler kilo.web/app}
 
+  :immutant {:context-path "/"}
+
   :main ^{:skip-aot true} kilo.core
 
   :repl-options {:init-ns user 
