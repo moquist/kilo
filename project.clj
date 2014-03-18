@@ -10,7 +10,6 @@
 		 [ring/ring-core "1.2.1"]
                  [ring/ring-jetty-adapter "1.1.0"]
                  [ring-middleware-format "0.3.2"]
-                 [ring-mock "0.1.5"]
                  
                  ;;[org.clojure/java.jdbc "0.3.3"]
                  ;; using org.clojure/java.jdbc 0.3.3 results in this
@@ -35,6 +34,7 @@
                    :dependencies [[org.clojure/tools.namespace "0.2.4"]
                                   [org.clojure/tools.nrepl "0.2.3"]
                                   [org.clojure/java.classpath "0.2.0"]
+                                  [ring-mock "0.1.5"]
                                   ]}}
   
   :ring {:handler kilo.web/app}
