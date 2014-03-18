@@ -16,7 +16,7 @@
                                          "/" ".kilo-test" ))
         db (:conf-sql-db conf)]
     ;; TODO: really need to substring (?) and supply 'kilo-test' as db-name
-    (assoc db :subname "//localhost:5432/kilo-test")
+    (assoc db :subname "//localhost:5432/kilo_test")
     ))
 
 (defn set-korma-connection!

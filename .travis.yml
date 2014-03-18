@@ -5,5 +5,5 @@ jdk:
   - openjdk7
 
 before_script:
-  - psql -c 'create database kilo-test;' -U postgres
+  - psql -c 'create database kilo_test;' -U postgres
   
