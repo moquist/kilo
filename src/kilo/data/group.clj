@@ -14,7 +14,8 @@
 
 (defn set-group-data
   [id fields]
-  (let [id (Long/parseLong id)]
+  (let [id (Long/parseLong id)
+        fields (assoc fields :timemodified (quot (System/currentTimeMillis) 1000))]
     (update group
             (set-fields fields)
             (where {:id id})))
