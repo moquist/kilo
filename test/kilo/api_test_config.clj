@@ -13,8 +13,8 @@
   (k-testdb/setup-test-db!)
   (k-testdb/set-korma-connection!)
   ;;(def onboarding-response (a-web/onboarding (rmr/request :get "/")))
-  (def get-user (k-web/app (rmr/request :get "/kilo/user/99999"))))
-  
+  (def get-user (k-web/app (rmr/request :get "/kilo/user/99999")))
+  (def get-group (k-web/app (rmr/request :get "/kilo/group/33333"))))
 (defn teardown-test []
   (k-testdb/teardown-test-db!)
   )

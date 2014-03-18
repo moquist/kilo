@@ -20,4 +20,18 @@
                     [:istest :int "NOT NULL"]
                     [:can_masquerade :int "NOT NULL"]
                     [:sis_user_id :bigint]]
-         :primary-key [:id]}}}
+         :primary-key [:id]}
+ 
+  :mdl_groups 
+       {:cols 
+                   [[:id :bigserial "NOT NULL"]
+                    [:name :varchar "NOT NULL"]
+                    [:description :text]
+                    [:enrolmentkey :varchar]
+                    [:picture :bigint "NOT NULL"]
+                    [:hidepicture :smallint "NOT NULL"]
+                    [:timemodified :bigint]
+                    [:timecreated :bigint]
+                    [:course_id :bigint]]
+         :primary-key [:id]}}
+  }
