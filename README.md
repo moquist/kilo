@@ -1,4 +1,4 @@
-# kilo
+# kilo [![Build Status](https://travis-ci.org/vlacs/kilo.png?branch=master)](https://travis-ci.org/vlacs/kilo)
 ====
 ![kilo](http://www.navy.mil/navydata/communications/flags/kilo.gif)
 
