@@ -5,5 +5,6 @@ jdk:
   - openjdk7
 
 before_script:
+  - ./dev-set-up.sh
   - psql -c 'create database kilo_test;' -U postgres
   
