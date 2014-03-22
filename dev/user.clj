@@ -4,7 +4,7 @@
             [clojure.pprint :refer (pprint)]
             [clojure.repl :refer :all]
             [clojure.test :as test]
-            [clojure.tools.namespace.repl :refer (refresh refresh-all)]
+            [clojure.tools.namespace.repl :refer (refresh refresh-all set-refresh-dirs)]
             [kilo.core :as k-core]
             [kilo.conf :as k-conf]
             ))
@@ -41,4 +41,6 @@
 
 (defn reset []
   (stop!)
+  ;;
+  (set-refresh-dirs "dev" "src/kilo")
   (refresh :after 'user/go))
