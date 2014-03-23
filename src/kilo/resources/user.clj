@@ -2,7 +2,9 @@
   (:require
             [clojure.data.json :as json]
             [liberator.core :refer [resource defresource]]
-            [kilo.data.user :as k-user]))
+            [kilo.data.user :as k-user]
+            [kilo.messaging.put-publisher :as k-pub]
+            ))
 
 (defresource
   ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of
@@ -24,7 +26,7 @@
   :allowed-methods [:put]
   :available-media-types ["application/json" "application/edn"]
   :put! (fn [ctx]
-          (k-user/set-user-data id (json/read-str  (slurp (get-in ctx [:request :body])) :key-fn keyword) ) )
+          (k-pub/publish id (json/read-str  (slurp (get-in ctx [:request :body])) :key-fn keyword) ) )
   :new? false
   :respond-with-entity? true
   :handle-ok (fn [ctx]

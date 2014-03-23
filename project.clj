@@ -34,7 +34,8 @@
                    :dependencies [[org.clojure/tools.namespace "0.2.4"]
                                   [org.clojure/tools.nrepl "0.2.3"]
                                   [org.clojure/java.classpath "0.2.0"]
-                                  [ring-mock "0.1.5"]]
+                                  [ring-mock "0.1.5"]
+                                  [org.immutant/immutant-messaging "1.1.0"]]
                                   }}
 
   :immutant {:context-path "/"}
