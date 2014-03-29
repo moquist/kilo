@@ -16,7 +16,7 @@
 
 (defn set-user-data
   [id fields]
-  (let [id (Long/parseLong id)
+  (let [
         fields (assoc fields :timemodified (quot (System/currentTimeMillis) 1000))]
     (update user
             (set-fields fields)

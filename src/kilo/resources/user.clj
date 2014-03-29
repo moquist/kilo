@@ -3,7 +3,7 @@
             [clojure.data.json :as json]
             [liberator.core :refer [resource defresource]]
             [kilo.data.user :as k-user]
-            [kilo.messaging.put-publisher :as k-pub]
+            [kilo.messaging.publisher :as k-pub]
             ))
 
 (defresource
