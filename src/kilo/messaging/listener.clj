@@ -2,27 +2,25 @@
   (:require
     [clojure.data.json :as json]
     [immutant.messaging :as msg]
-    [kilo.data.user :as k-user]))
+    [kilo.data.resource-accessor :as k-resource]))
 
-(def sample-request
-  "{\"header\":{\"entity-id\":{\"notification-id\":7767},\"operation\":\"put\",\"entity-type\":\"notification\"},\"payload\":{\"user-id\":1234,\"type\":\"user\",\"message\":\"<a href=\\\"http:\\/\\/gamestarmechanic.com\\\">Your task has been evaluated!<\\/a>\"}}")
-
-(def sample-user-message
-  "{\"payload\":{\"lastname\":\"Moby\"},\"header\":{\"entity-id\":{\"user-id\":33209},\"operation\":\"put\",\"entity-type\":\"user\"}}")
-
-(def entity-update-functions
-  {:user #'k-user/set-user-data}
-  {:group #'k-group/set-group-data}
-  )
-
-(def entity-ids
-  {:user user-id})
+(def entity-functions
+  "Maps incoming 'operation' value with a function that implements
+   analagous operation via Korma db functions."
+  {
+   :put #'k-resource/set-data
+   :get #'k-resource/get-data})
 
 (defn process-message
+  "Receives message from queue and assembles call to the function that will
+   either retrieve data from the db or update data in the db (depending on
+   'operation' value in message.
+"
   [message]
   (let [parsed-message (json/read-str message :key-fn keyword)
         header (:header parsed-message)
         payload (:payload parsed-message)
-        entity (keyword (:entity-type header))]
-    ((entity entity-update-functions) (get-in header [:entity-id :user-id]) payload)))
+        entity (keyword (:entity-type header))
+        operation (keyword (:operation header))]
+    ((operation entity-functions) entity (get-in header [:entity-id :user-id]) payload)))
 
