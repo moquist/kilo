@@ -9,7 +9,8 @@
    :user         entities/user
    :group        entities/group
    :group-member entities/group_member
-   ;;:notification entities/notification})
+   ;;:notification entities/notification
+   })
 
 (defn get-data
   [entity id]
@@ -22,4 +23,4 @@
         fields (assoc fields :timemodified (quot (System/currentTimeMillis) 1000))]
     (update (entity resource-entities)
               (set-fields fields)
-              (where {:id id})))))
+              (where {:id id}))))
