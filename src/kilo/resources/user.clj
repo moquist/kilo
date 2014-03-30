@@ -2,24 +2,8 @@
   (:require
             [clojure.data.json :as json]
             [liberator.core :refer [resource defresource]]
-            [kilo.data.user :as k-user]
             [kilo.messaging.publisher :as k-pub]
             [kilo.data.resource-accessor :as k-resource]))
-
-#_(defresource
-  ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of
-          getting data in function that handles the exists? check and assoc'ing that data
-          into the Liberator context."
-    :example "<code>curl --header 'Accept:application/edn' http://localhost:4001/kilo/user/36590</code>"} 
-
-  get-user [id]
-  :allowed-methods [:get] 
-  :available-media-types ["application/json" "application/edn"]
-  :exists? (fn [ctx]
-             (if-let [user (k-user/get-user-data id)]
-               {::user user}))
-  :handle-ok (fn [ctx]
-               (::user ctx)))
 
 (defresource
   ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of

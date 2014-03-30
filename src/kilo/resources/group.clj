@@ -2,9 +2,8 @@
   (:require
             [clojure.data.json :as json]
             [liberator.core :refer [resource defresource]]
-            [kilo.data.group :as k-group] 
+            [kilo.data.resource-accessor :as k-data-accessor] 
             ))
- 
 
 (defresource
   ^{:doc "This resource provides data for a given user. Utilizing Liberator pattern of
@@ -17,7 +16,7 @@
   :allowed-methods [:get] 
   :available-media-types ["application/json" "application/edn"]
   :exists? (fn [ctx]
-             (if-let [group (k-group/get-group-data id)]
+             (if-let [group (k-data-accessor/get-data (keyword "group") id)]
                {::group group}))
   :handle-ok (fn [ctx]
                (::group ctx)))
@@ -27,7 +26,7 @@
   :allowed-methods [:put]
   :available-media-types ["application/json" "application/edn"]
   :put! (fn [ctx]
-          (k-group/set-group-data id
+          (k-data-accessor/set-data (keyword "group") id
                                    (json/read-str  (slurp
                                                        (get-in ctx [:request :body])) :key-fn keyword) )
           )
