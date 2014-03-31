@@ -1,12 +1,10 @@
 (ns immutant.init
-  (:require
-   [clojure.edn :as edn]
-   [kilo.web           :as k-web]
-   [kilo.sqldb         :as k-sqldb]
-   [kilo.messaging.listener :as k-listener]
-   [immutant.web       :as web]
-   [immutant.messaging :as msg]
-   ))
+  (:require [clojure.edn :as edn]
+            [kilo.web :as k-web]
+            [kilo.sqldb :as k-sqldb]
+            [kilo.messaging.listener :as k-listener]
+            [immutant.web :as web]
+            [immutant.messaging :as msg]))
 
 (defn initialize!
   []
