@@ -16,7 +16,7 @@
   :allowed-methods [:get] 
   :available-media-types ["application/json" "application/edn"]
   :exists? (fn [ctx]
-             (if-let [group (k-data-accessor/get-data (keyword "group") id)]
+             (if-let [group (k-data-accessor/get-data (keyword "group") (Long/parseLong id))]
                {::group group}))
   :handle-ok (fn [ctx]
                (::group ctx)))
