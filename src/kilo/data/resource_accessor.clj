@@ -18,8 +18,8 @@
           (where {:id id})))
 
 (defn set-data
-  [entity where-fields data]
+  [entity entity-id data]
   (let [fields (assoc data :timemodified (quot (System/currentTimeMillis) 1000))]
     (update (entity resource-entities)
               (set-fields data)
-              (where where-fields))))
+              (where (entities/get-where-fields entity-id)))))
